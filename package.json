@@ -22,5 +22,12 @@
     "knex": "^0.12.6",
     "sqlite3": "^3.1.8",
     "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1"
   }
 }
