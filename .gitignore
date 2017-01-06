@@ -1,3 +1,6 @@
+# Default database name
+distrowatch.sqlite
+
 # Logs
 logs
 *.log
