@@ -17,11 +17,3 @@ const argv = require('yargs')
   .alias('v', 'version')
   .version()
   .argv;
-
-const db = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: argv.file,
-  },
-  useNullAsDefault: true,  // Default values are not supported in sqlite
-});
