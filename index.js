@@ -17,3 +17,37 @@ const argv = require('yargs')
   .alias('v', 'version')
   .version()
   .argv;
+
+const db = require('./db')(argv.file);
+const get = require('./get');
+const urls = require('./urls');
+
+/**
+ * Drop and recreate tables with the proper schemas.
+ */
+function reinitializeTables() {
+  const distros = db.schema.dropTableIfExists('distros').createTable('distros', (table) => {
+    table.increments('id').primary();
+    table.string('longname').notNullable();
+    table.string('shortname').notNullable();
+    table.string('urlname').notNullable();
+  });
+
+  return Promise.all([distros]);
+}
+
+function lsDistros() {
+  const distros = [];
+
+  return get(urls.popularity).then(($) => {
+    $('select[name=distribution] > option').slice(1).each((i, el) => {
+      const it = $(el);
+      distros.push({
+        urlname: it.val(),
+        shortname: it.text(),
+      });
+    });
+
+    return distros;
+  });
+}
