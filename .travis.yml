@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "stable"
+
+# Only fetch the previous 3 commits
+git:
+  depth: 3
+
+# Use gulp default target for linting/tests
+script: ./node_modules/gulp/bin/gulp.js
+
+# Cache npm dependencies
+cache:
+  directories:
+    - node_modules
