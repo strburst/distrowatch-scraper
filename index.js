@@ -62,9 +62,20 @@ function reinitializeTables() {
     table.integer('based_on_id').references('based_on_id').on('based_on');
   });
 
+  const createRanks = db.schema.createTable('hit_rankings', (table) => {
+    table.increments('distro_id').primary().references('distro_id').on('distros');
+    table.integer('12mo_hits').notNullable();
+    table.enu('12mo_state', ['up', 'down', 'steady']).notNullable();
+    table.integer('6mo_hits').notNullable();
+    table.enu('6mo_state', ['up', 'down', 'steady']).notNullable();
+    table.integer('1mo_hits').notNullable();
+    table.enu('1mo_state', ['up', 'down', 'steady']).notNullable();
+  });
+
   return dropDistros
     .then(() => Promise.all([createOsTypes, createCategories, createBasedOn]))
-    .then(() => createDistros);
+    .then(() => createDistros)
+    .then(() => createRanks);
 }
 
 /**
