@@ -6,13 +6,17 @@ const argv = require('yargs')
   .usage('Usage: $0 [options] [-f filename]')
 // -f|--file filename
   .alias('f', 'file')
-  .demandOption('f')
   .default('f', './distrowatch.sqlite')
   .describe('f', 'file name to write database to')
   .string('f')
 // -h|--help
   .alias('h', 'help')
   .help('h')
+// -j|--jobs
+  .alias('j', 'jobs')
+  .default('j', 3)
+  .describe('j', 'number of distros to process concurrently')
+  .number('j')
 // -v|--version
   .alias('v', 'version')
   .version()
