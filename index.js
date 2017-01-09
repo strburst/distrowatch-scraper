@@ -62,7 +62,7 @@ function reinitializeTables() {
     table.integer('based_on_id').references('based_on_id').on('based_on');
   });
 
-  const createRanks = db.schema.createTable('hit_rankings', (table) => {
+  const createRanks = recreate('hit_rankings', (table) => {
     table.increments('distro_id').primary().references('distro_id').on('distros');
     table.integer('12mo_hits').notNullable();
     table.enu('12mo_state', ['up', 'down', 'steady']).notNullable();
