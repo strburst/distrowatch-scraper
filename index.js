@@ -17,13 +17,17 @@ const argv = require('yargs')
   .default('j', 3)
   .describe('j', 'number of distros to process concurrently')
   .number('j')
+// --user-agent name
+  .default('user-agent', 'distrowatch-scraper')
+  .describe('user-agent', '\'User-Agent\' to send in requests')
+  .string('user-agent')
 // -v|--version
   .alias('v', 'version')
   .version()
   .argv;
 
 const db = require('./db')(argv.file);
-const get = require('./get');
+const get = require('./get')(argv['user-agent']);
 const urls = require('./urls');
 
 /**
