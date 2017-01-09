@@ -12,7 +12,7 @@ const argv = require('yargs')
 // -h|--help
   .alias('h', 'help')
   .help('h')
-// -j|--jobs
+// -j|--jobs n
   .alias('j', 'jobs')
   .default('j', 3)
   .describe('j', 'number of distros to process concurrently')
