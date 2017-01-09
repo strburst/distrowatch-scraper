@@ -114,9 +114,9 @@ function scrapeForeignKeyMetadata() {
  * Fetch a list of all distros.
  */
 function lsDistros() {
-  const distros = [];
-
   return get(urls.popularity).then(($) => {
+    const distros = [];
+
     $('select[name=distribution] > option').slice(1).each((i, el) => {
       const it = $(el);
       distros.push({
